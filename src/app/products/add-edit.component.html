@@ -10,7 +10,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
         <div class="form-group row">
-            <label for="id" class="col-md-4 col-form-label text-md-right">Id</label>
+            <label class="col-md-4 col-form-label text-md-right">Id</label>
             <div class="col-md-4">
                 <input type="text" formControlName="id"
                        class="form-control" name="id">
@@ -18,7 +18,7 @@
         </div>
 
     <div class="form-group row">
-        <label for="name" class="col-md-4 col-form-label
+        <label  class="col-md-4 col-form-label
             text-md-right">Name</label>
         <div class="col-md-6">
             <input type="text"
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
+        <label  class="col-md-4 col-form-label text-md-right">Description</label>
         <div class="col-md-6">
             <input type="text"
                    formControlName="description"
@@ -35,16 +35,17 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
+        <label  class="col-md-4 col-form-label text-md-right">Price</label>
         <div class="col-md-6">
             <input type="number" formControlName="price" class="form-control">
         </div>
     </div>
     <div class="form-group row">
-        <label for="image" class="col-md-4 col-form-label text-md-right">Resim</label>
+        <label  class="col-md-4 col-form-label text-md-right">Resim</label>
         <div class="col-md-6">
-<input #Image type="file" (change)="handleFileInput($event.target.files)"/>
+<!--<input #Image type="file" (change)="handleFileInput($event.target.files)"  (click)="($event)"/>-->
 <!--            <input type="file" (change)="fileChange($event)">-->
+            <input type="file"  (change)="onFileChange($event)" />
         </div>
     </div>
     <div class="col-md-6 offset-md-4">

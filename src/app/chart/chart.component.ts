@@ -23,4 +23,7 @@ products : Product[];
     // refresh the list
     this.products = this.chartService.findAll();
   }
+  totalChart(){
+    // TODO: gelen productstan foreaach ile dön price topla.OnInıt çağır.html de yazdır.
+  }
 }

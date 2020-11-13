@@ -2,24 +2,37 @@ import {Injectable} from "@angular/core";
 import {Product} from "../_models/product";
 
 @Injectable({providedIn: "root"})
-export class ChartService {
+export class ProductService {
+    products: Product[];
 
-    products: Product[] = [];
-    cartTotal: any  = 0;
     constructor() {
+        this.products = [
 
+        ]
     }
 
     addProduct(product: Product) {
         this.products.push(product);
     }
 
-    deleteChartProduct(id: string) {
+    updateProduct(product: Product) {
+        const index = this.products.findIndex(x => x.id === product.id);
+        if (index !== -1) {
+            this.products[index] = product;
+        }
+    }
+
+    deleteProduct(id: string) {
         const index = this.products.findIndex(x => x.id === id);
         if (index !== -1) {
             this.products.splice(index, 1);
         }
     }
+
+    find(id: string): Product {
+        return this.products.find(x => x.id === id);
+    }
+
     findAll(): Product[] {
         return this.products.slice();
     }
