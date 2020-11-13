@@ -1,1 +1,45 @@
-<p>shop works!</p>
+<div class="container">
+    <div class="row">
+
+        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="row">
+                        <div class="col-sm-3" *ngFor="let product of products">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img src="" class="img-responsive" alt="a" />
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="price col-md-6" >
+                                            <h5>
+                                                {{product.name}}</h5>
+                                            <h5>
+                                                {{product.description}}</h5>
+                                            <h5 class="price-text-color">
+                                                <h5>
+                                                    {{product.price}}TL</h5></h5>
+                                        </div>
+
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-shopping-cart"></i><a class="hidden-sm" (click)="addProductChart(product)">Add to cart</a></p>
+
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

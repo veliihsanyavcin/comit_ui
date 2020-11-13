@@ -11,8 +11,6 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
 import { HomeComponent } from './home';
-import { ChartComponent } from './chart/chart.component';
-import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
     imports: [
@@ -24,9 +22,7 @@ import { ShopComponent } from './shop/shop.component';
     declarations: [
         AppComponent,
         AlertComponent,
-        HomeComponent,
-        ChartComponent,
-        ShopComponent
+        HomeComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

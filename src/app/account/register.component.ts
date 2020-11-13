@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
         this.form = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            username: ['', Validators.required],
+            username: ['', Validators.required, Validators.minLength(5)],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }
@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
             .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+                    this.alertService.success('KAYIT BAŞARILI', { keepAfterRouteChange: true });
                     this.router.navigate(['../login'], { relativeTo: this.route });
                 },
                 error: error => {

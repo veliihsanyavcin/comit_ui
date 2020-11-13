@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
+import {Product} from "../_models/product";
+import {ProductService} from "./product.service";
+import { DomSanitizer } from '@angular/platform-browser';
 
-import { AccountService } from '../_services';
 
 @Component({ templateUrl: 'list.component.html' })
 export class ListComponent implements OnInit {
-    users = null;
+    products: Product[];
 
-    constructor(private accountService: AccountService) {}
+
+    constructor(
+        private productService: ProductService
+    ) {}
 
     ngOnInit() {
-        this.accountService.getAll()
-            .pipe(first())
-            .subscribe(users => this.users = users);
+        this.products = this.productService.findAll();
     }
 
-    deleteUser(id: string) {
-        const user = this.users.find(x => x.id === id);
-        user.isDeleting = true;
-        this.accountService.delete(id)
-            .pipe(first())
-            .subscribe(() => this.users = this.users.filter(x => x.id !== id));
+    deleteProduct(id: string) {
+        this.productService.deleteProduct(id);
+        // refresh the list
+        this.products = this.productService.findAll();
     }
 }

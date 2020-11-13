@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AlertService} from '../_services';
+import {ProductService} from "./product.service";
+import { DomSanitizer } from '@angular/platform-browser';
 
-import { AccountService, AlertService } from '../_services';
 
-@Component({ templateUrl: 'add-edit.component.html' })
+@Component({templateUrl: 'add-edit.component.html'})
 export class AddEditComponent implements OnInit {
     form: FormGroup;
     id: string;
@@ -17,36 +18,43 @@ export class AddEditComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private accountService: AccountService,
-        private alertService: AlertService
-    ) {}
+        private alertService: AlertService,
+        private productService: ProductService,
+        // public _d: DomSanitizer
+    ) {
+    }
+    // fileChange(e) {
+    //     const file = e.srcElement.files[0];
+    //     this.imgsrc = window.URL.createObjectURL(file);
+    // }
 
     ngOnInit() {
         this.id = this.route.snapshot.params['id'];
         this.isAddMode = !this.id;
-        
-        // password not required in edit mode
-        const passwordValidators = [Validators.minLength(6)];
-        if (this.isAddMode) {
-            passwordValidators.push(Validators.required);
-        }
 
         this.form = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            username: ['', Validators.required],
-            password: ['', passwordValidators]
+            // id: ['', Validators.required],
+            name: ['', Validators.required],
+            description: ['', Validators.required],
+            price: [0, Validators.required],
         });
 
         if (!this.isAddMode) {
-            this.accountService.getById(this.id)
-                .pipe(first())
-                .subscribe(x => this.form.patchValue(x));
+            const product = this.productService.find(this.id);
+            this.form.setValue( {
+                // id: product.id,
+                name: product.name,
+                description: product.description,
+                price: product.price
+            });
+            this.form.updateValueAndValidity();
         }
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.form.controls; }
+    get f() {
+        return this.form.controls;
+    }
 
     onSubmit() {
         this.submitted = true;
@@ -61,39 +69,10 @@ export class AddEditComponent implements OnInit {
 
         this.loading = true;
         if (this.isAddMode) {
-            this.createUser();
+            this.productService.addProduct(this.form.value);
         } else {
-            this.updateUser();
+            this.productService.updateProduct(this.form.value);
         }
-    }
-
-    private createUser() {
-        this.accountService.register(this.form.value)
-            .pipe(first())
-            .subscribe({
-                next: () => {
-                    this.alertService.success('User added successfully', { keepAfterRouteChange: true });
-                    this.router.navigate(['../'], { relativeTo: this.route });
-                },
-                error: error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                }
-            });
-    }
-
-    private updateUser() {
-        this.accountService.update(this.id, this.form.value)
-            .pipe(first())
-            .subscribe({
-                next: () => {
-                    this.alertService.success('Update successful', { keepAfterRouteChange: true });
-                    this.router.navigate(['../../'], { relativeTo: this.route });
-                },
-                error: error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                }
-            });
+        this.router.navigate(['/products']);
     }
 }

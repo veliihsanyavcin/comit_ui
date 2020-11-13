@@ -1,36 +1,44 @@
-<h1>Users</h1>
-<a routerLink="add" class="btn btn-sm btn-success mb-2">Product</a>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th style="width: 30%">İd</th>
-            <th style="width: 30%">Name</th>
-            <th style="width: 30%">Description</th>
-            <th style="width: 30%">Price</th>
-            <th style="width: 30%">İmage</th>
+<br>
+<br>
+<div class="container">
+   <div class="row">   <a routerLink="add" class="btn btn-md btn-success mb-2">Add Product</a>  </div>
+
+    <div class="row col-md-6 col-md-offset-2 custyle">
+        <table class="table table-striped custab">
+            <thead>
+
+            <tr>
+                <th style="width: 30%">Id</th>
+                <th style="width: 30%">Name</th>
+                <th style="width: 30%">Description</th>
+                <th style="width: 30%">Price</th>
+                <th style="width: 30%">İmage</th>
+                <th style="width: 10%"></th>
+            </tr>
+            </thead>
+            <tr *ngFor="let product of products">
+                <td></td>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.price}}</td>
+                <td></td>
+<!--                <td><img height="10px" width="10px" [src]="_d.bypassSecurityTrustUrl(imgsrc)"></td>-->
 
 
-            <th style="width: 10%"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of users">
-            <td>{{user.id}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.username}}</td>
-
-            <td style="white-space: nowrap">
-                <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
-                <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
-                    <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
-                    <span *ngIf="!user.isDeleting">Delete</span>
-                </button>
-            </td>
-        </tr>
-        <tr *ngIf="!users">
-            <td colspan="4" class="text-center">
-                <span class="spinner-border spinner-border-lg align-center"></span>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                <td style="white-space: nowrap">
+                    <a [routerLink]="['/products', 'edit', product.id]"
+                       class="btn btn-sm btn-primary mr-1">Edit</a>
+                    <button (click)="deleteProduct(product.id)"
+                            class="btn btn-sm btn-danger btn-delete-product">
+                        <span>Delete</span>
+                    </button>
+                </td>
+            </tr>
+            <tr *ngIf="!products">
+                <td colspan="4" class="text-center">
+                    <span class="spinner-border spinner-border-lg align-center"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
