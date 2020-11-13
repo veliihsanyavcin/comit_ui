@@ -16,6 +16,7 @@ products : Product[];
 
   ngOnInit(): void {
     this.products = this.chartService.products;
+    this.getTotalPrice();
   }
 
   deleteChartProduct(id: string) {
@@ -23,7 +24,13 @@ products : Product[];
     // refresh the list
     this.products = this.chartService.findAll();
   }
-  totalChart(){
-    // TODO: gelen productstan foreaach ile dön price topla.OnInıt çağır.html de yazdır.
+  getTotalPrice() {
+    let total = 0;
+
+    this.products.map(item => {
+      total += item.price;
+    });
+
+    return total
   }
 }
