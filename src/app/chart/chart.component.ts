@@ -31,6 +31,13 @@ products : Product[];
       total += item.price;
     });
 
+
+
+
+
     return total
   }
+
+
 }
+

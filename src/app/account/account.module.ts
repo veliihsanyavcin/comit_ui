@@ -6,12 +6,19 @@ import { AccountRoutingModule } from './account-routing.module';
 import { LayoutComponent } from './layout.component';
 import { LoginComponent } from './login.component';
 import { RegisterComponent } from './register.component';
+import { RouterModule, Routes} from "@angular/router";
+import {ShopComponent} from "../shop/shop.component";
+
+const routes: Routes = [
+
+]
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        AccountRoutingModule
+        AccountRoutingModule,
+        RouterModule.forChild(routes)
     ],
     declarations: [
         LayoutComponent,
