@@ -1,67 +1,69 @@
+<!-- nav -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark" *ngIf="user">
-    <a class="navbar-brand" href="#">Comit</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+
+
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+
             <li class="nav-item active">
                 <a class="nav-link" routerLink="/products" routerLinkActive="active">
-                    <i class="fa fa-home"></i>
+
                     Admin
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" routerLink="/shop" routerLinkActive="active">
-
                     Shop
+                    <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/chart" routerLinkActive="active">
 
-                   Chart
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/chart" routerLinkActive="active" >
+
+                    Chart
+                    <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link " routerLink="/order" routerLinkActive="active">
 
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/order" routerLinkActive="active">
                     Order
+                    <span class="sr-only">(current)</span>
                 </a>
             </li>
 
         </ul>
         <ul class="navbar-nav ">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item">
+                <a class="nav-link" >
+                    <i class="glyphicon glyphicon-shopping-cart"></i>
 
-                    Shop
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/account/login" routerLinkActive="active" (click)="logout()" >
-                   Logout
+                <a class="nav-link" routerLink="/login" routerLinkActive="active">
+                    <i class="glyphicon glyphicon-log-out" (click)="logout()">
+
+                    </i>
+
                 </a>
             </li>
-
         </ul>
 
     </div>
+
 </nav>
 
 <div class="app-container" [ngClass]="{ 'bg-light': user }">
